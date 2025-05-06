@@ -8,7 +8,6 @@
     <div class = 'main'>
    
     <div class= 'signup'>
-    <!-- Formulário que envia os dados para /adicionar -->
     <form th:action="@{/adicionar}" th:object="${convidado}" method="post" name="forms">
         <label for="chk" aria-hidden="true">Adicionar Convidado</label>
         <div th:if="${#fields.hasErrors('nome')}" style="color:red">
@@ -30,7 +29,6 @@
     </form>
 </div>
 
-    <!-- Botão separado para ir à lista -->
     <br>
     <form th:action="@{/list}" method="get">
         <button type="submit" name = 'exibir'>Exibir Lista</button>
