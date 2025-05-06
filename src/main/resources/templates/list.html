@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Lista de Convidados</title></head>
+<body>
+    <h1>Convidados Cadastrados</h1>
+    <div>
+        <Strong>Contagem de Convidados:</strong>
+            <span th:text= "${Total}"></span>
+
+    </div>
+    <ul>
+        <li th:each="c : ${convidados}">
+            <span th:text="${c.nome}">Nome</span> -
+            <span th:text="${c.email}">Email</span> -
+            <span th:text="${c.telefone}">Telefone</span>
+            <a th:href="@{'/remover/' + ${c.id}}">Remover</a>
+        </li>
+    </ul>
+
+    <a href="/">Voltar para o formulário</a>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Cadastro de Convidados</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class = 'main'>
+   
+    <div class= 'signup'>
+    <!-- Formulário que envia os dados para /adicionar -->
+    <form th:action="@{/adicionar}" th:object="${convidado}" method="post" name="forms">
+        <label for="chk" aria-hidden="true">Adicionar Convidado</label>
+        <div th:if="${#fields.hasErrors('nome')}" style="color:red">
+            <p th:each="err : ${#fields.errors('nome')}" th:text="${err}"></p>
+        </div>
+        <input type="text" name="txt" placeholder="User name" th:field="*{nome}" /><br>
+    
+        <div th:if="${#fields.hasErrors('email')}" style="color:red">
+            <p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+        </div>
+        <input type="email" name="email" placeholder="Email" th:field="*{email}"  /><br>
+    
+        <div th:if="${#fields.hasErrors('telefone')}" style="color:red">
+            <p th:each="err : ${#fields.errors('telefone')}" th:text="${err}"></p>
+        </div>
+       <input type="text"  name="pswd" placeholder="Password" th:field="*{telefone}" /><br>
+    
+        <button type="submit" name = 'add'>Adicionar</button>
+    </form>
+</div>
+
+    <!-- Botão separado para ir à lista -->
+    <br>
+    <form th:action="@{/list}" method="get">
+        <button type="submit" name = 'exibir'>Exibir Lista</button>
+    </form>
+</div>
+</body>
+</html>
