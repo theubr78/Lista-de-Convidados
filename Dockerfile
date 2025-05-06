@@ -1,14 +1,13 @@
-# Usa uma imagem base com JDK (Java)
-FROM eclipse-temurin:17-jdk-jammy
-
-# Diretório de trabalho no container
+# Fase de build (gera o .jar)
+FROM maven:3.8.6-openjdk-17 AS builder
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copia o arquivo JAR gerado pelo Maven/Gradle
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
-
-# Porta que o Spring Boot usa (normalmente 8080)
+# Fase de execução (usa apenas o .jar)
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Comando para executar o JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]
