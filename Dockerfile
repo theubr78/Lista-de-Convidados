@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 # Copia o arquivo JAR gerado pelo Maven/Gradle
-COPY target/*.jar app.jar
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 
 # Porta que o Spring Boot usa (normalmente 8080)
 EXPOSE 8080
